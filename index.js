@@ -1,7 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+var ReactDOM = require('react-dom');
+var React = require('react');
+var store = require('./store');
+var TaskBox = require('./TaskBox');
 
-class TaskBox extends React.Component {
+/*class TaskBox extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -30,9 +32,9 @@ class TaskBox extends React.Component {
 			</div>
 		);
 	}
-}
+}*/
 
-class TaskTable extends React.Component {
+/*class TaskTable extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -79,8 +81,12 @@ class TaskBtn extends React.Component {
 			<button onClick={this.handleClick}>获取任务清单</button>
 		);
 	}
+}*/
+const render = function() {
+	ReactDOM.render(
+		<TaskBox value={store.getState()}/>,
+		document.getElementById("root")
+	);
 }
-ReactDOM.render(
-	<TaskBox/>,
-	document.getElementById("root")
-);
+render();
+store.subscribe(render);
